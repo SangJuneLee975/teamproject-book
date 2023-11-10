@@ -21,7 +21,7 @@ public class ChangePasswordVO {
 	
 	@NotBlank(message="필수항목입니다.")
 	private String newPassword2;
-	
+	/////
 	private String encPassword; //서비스에서 설정
 	///////
 }
