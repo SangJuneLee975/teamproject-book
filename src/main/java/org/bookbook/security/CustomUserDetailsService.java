@@ -18,23 +18,34 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 
 	@Override
-	public UserDetails loadUserByUsername(String userid) 
+	public UserDetails loadUserByUsername(String username) 
 		throws UsernameNotFoundException {
 
-		log.warn("Load User By Userid:===== " + userid);
-
-		UserVO vo = mapper.read(userid);
+		  log.warn("Load User By username: " + username);
+		    UserVO vo = mapper.read(username);
+		    
 		log.warn("user vo: " + vo);
 		
 		if(vo == null) {
-			log.warn(userid + "은 없는 id입니다.");
-			throw new UsernameNotFoundException(userid + "은 없는 id입니다.");
+			log.warn(username + "은 없는 id입니다.");
+			throw new UsernameNotFoundException(username + "은 없는 id입니다.");
+			
+			
 		}
-
+		
 		log.warn("user vo: " + vo);
+		log.warn("User details: " + vo.toString());
+		   // 사용자 ID 값 로그에 출력
+	    log.info("Received User ID: " + username);
+	    
+
+
+
 		return new CustomUser(vo);
 		
 	}
-
-
+	
 }
+
+
+

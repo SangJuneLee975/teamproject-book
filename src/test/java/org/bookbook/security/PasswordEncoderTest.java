@@ -24,7 +24,7 @@ public class PasswordEncoderTest {
 	
 	@Test
 	public void testEncode() {
-		String str = "1234";
+		String str = "1234";//
 		
 		String enStr = pwEncoder.encode(str);
 		log.info("password: " + enStr);

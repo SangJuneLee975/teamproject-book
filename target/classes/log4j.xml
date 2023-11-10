@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	
-	<!-- Application Loggers -->
+	<!-- Application Loggers 0   -->
 	<logger name="org.bookbook.controller">
 		<level value="info" />
 	</logger>

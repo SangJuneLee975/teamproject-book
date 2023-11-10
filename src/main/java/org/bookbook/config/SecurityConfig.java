@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.tokenValiditySeconds(3 * 24 * 60 * 60); // "remember-me" 토큰의 유효성 기간을 설정. 3일 동안 유효한 토큰을 설정
 
 	}
-
+//
 	@Autowired
 	private DataSource dataSource;
 

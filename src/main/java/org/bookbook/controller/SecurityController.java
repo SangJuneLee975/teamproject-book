@@ -38,6 +38,7 @@ public class SecurityController {
 
 	}
 
+	//
 	@PostMapping("/signup")
 	public String signup(@Valid @ModelAttribute("user") UserVO user, Errors errors,
 			@RequestParam("birth.year") String year, @RequestParam("birth.month") String month,

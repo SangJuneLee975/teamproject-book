@@ -30,7 +30,7 @@ public class RootConfig {
 		HikariConfig config = new HikariConfig();
 //		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 //		config.setJdbcUrl("jdbc:mysql://localhost:3306/glory_db");
-		
+	//	
 		config.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 		config.setJdbcUrl("jdbc:log4jdbc:mysql://localhost:3306/mini_db"); // DBaver에서 데이터베이스 이름입력
 		config.setUsername("mini1");    //사용자  ID

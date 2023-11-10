@@ -7,7 +7,7 @@
 
 
 <div style="width: 500px" class="mx-auto">
-	<h1 class="my-6">로그인</h1>
+	<h1 class="my-6"> 로그인 </h1>
 
 	<p class="text-end"></p>
 	<hr class="hr-solid">
@@ -19,6 +19,7 @@
 	<c:if test="${param.error == 'login_required' }">
 		<div class="error">로그인이 필요한 서비스입니다.</div>
 	</c:if>
+	
 
 	<form action="/security/login" method="post">
 
@@ -30,9 +31,10 @@
 				name="userid" id="userid" class="form-control" />
 		</div>
 
+
 		<div class="form-group">
-			<label for="userpassword"> 비밀번호:</label> <input type="password"
-				name="userpassword" id="userpassword" class="form-control" />
+			<label for="password"> 비밀번호:</label> <input type="password"
+				name="password" id="password" class="form-control" />
 		</div>
 
 

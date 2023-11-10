@@ -34,7 +34,7 @@ public class UserVO {
 	@NotBlank(message = "비밀번호 확인은 필수항목입니다.")
 	private String passwordcheck; // 비밀번호 확인
 
-	private String profileImageUrl; // 사용자 사진
+	private String profileImageUrl; // 사용자사진
 
 	private Date regDate;
 	
@@ -43,7 +43,8 @@ public class UserVO {
 	private String gender;
 
 	private List<AuthVO> authList;
-
+//////////////
+	
 	public Collection<SimpleGrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		for (AuthVO auth : authList) {

@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthVO {
-	private String userid;
+	private String userid; //
 	private String auth;
 }

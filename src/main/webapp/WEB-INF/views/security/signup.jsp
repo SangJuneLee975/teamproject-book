@@ -61,55 +61,28 @@
 			</div>
 		   -->
 
-
-			<!-- 
 			<div class="form-group">
-				<form:label path="email">Email</form:label>
-				<div id="superEmail" class="input-group">
-					<input class="form-control" type="text" name="emailId" id="emailId"
-						placeholder="이메일 아이디" />
-					<div style="margin: 3px">
-						<b>@</b>
-					</div>
-					<select class="box" id="email-list" name="emailDomain">
-						<option value="type">도메인 선택</option>
-						<option value="naver.com">@naver.com</option>
-						<option value="google.com">@google.com</option>
-						<option value="nate.com">@nate.com</option>
-						<option value="kakao.com">@kakao.com</option>
+				<form:label path="email">이메일</form:label>
+				<div id="SuperviserEmail" class="input-group">
+					<input class="form-control" type="text" id="viserEmail"
+						name="email" placeholder="이메일 아이디" />
+					<div style="margin: 3px"></div>
+					<span id="displayEmail"></span> <input class="box" id="domain-txt"
+						type="text" name="email" /> <select class="box" id="domain-list"
+						name="email">
+
+						<option value="naver.com">naver.com</option>
+						<option value="google.com">google.com</option>
+						<option value="kakao.com">kakao.com</option>
+						<option value="type">직접 입력</option>
 					</select>
 				</div>
 				<form:errors path="email" cssClass="error" />
 			</div>
--->
 
 
 
-		
-	<div class="form-group">
-    <form:label path="email">이메일</form:label>
-    <div id="SuperviserEmail" class="input-group" >
-        <input class="form-control" type="text" id="viserEmail" name="email" placeholder="이메일 아이디" />
-        <div style="margin: 3px">
-        </div>
-        <span id="displayEmail"></span>
-        <!-- 여기에 이메일 주소를 표시할 요소를 추가합니다 -->
-        <!-- 수정 끝 -->
-        <input class="box" id="domain-txt" type="text" name="email" /> 
-        <select class="box" id="domain-list" name="email">
-           
-            <option value="naver.com">naver.com</option>
-            <option value="google.com">google.com</option>
-            <option value="kakao.com">kakao.com</option>
-             <option value="type">직접 입력</option>
-        </select>
-    </div>
-    <form:errors path="email" cssClass="error" />
-</div>
-
-
-
-<script>
+			<script>
     const domainListEl = document.querySelector('#domain-list');
     const domainInputEl = document.querySelector('#domain-txt');
     const emailDisplay = document.querySelector('#displayEmail');
@@ -121,15 +94,15 @@
             domainInputEl.value = event.target.value;
             domainInputEl.disabled = true;
             
-         // domainInputEl이 직접 입력일 때는 emailDisplay에 표시하지 않도록
+         // domainInputEl이 직접 입력일 때는 emailDisplay에 표시하지 않도록 하기
             emailDisplay.textContent = `${viserEmail.value}@${event.target.value}`;
         } else {
             domainInputEl.value = "";
             domainInputEl.disabled = false;
-       //     emailDisplay.textContent = viserEmail.value; // 직접 입력시 emailDisplay에 @type을 포함시키지 않음
+       //     emailDisplay.textContent = viserEmail.value; // 직접 입력시 emailDisplay에 @type을 포함시키지 않게 함
         }
 
-        // Email 생성 및 표시 로직
+        // Email 생성 및 표시 
         const domain = domainInputEl.value;
        emailDisplay.textContent = `${viserEmail.value}@${domain}`;
     });
@@ -166,16 +139,6 @@
 			</div>
 
 
-			<!-- 
-			<div class="form-group">
-				<form:label path="birth">
-				
-			  생일</form:label>
-				<form:input path="birth" class="form-control" />
-
-				<form:errors path="birth" cssClass="error" />
-			</div>
- 		-->
 
 
 			<div class="form-group">
@@ -189,7 +152,7 @@
 
 			<div class="text-center">
 				<button type="submit" class="btn btn-primary">
-					<i class="fa-solid fa-user-plus"></i> 회원가입
+					<i class="fa-solid fa-user-plus"></i>  회원가입
 				</button>
 			</div>
 		</form:form>

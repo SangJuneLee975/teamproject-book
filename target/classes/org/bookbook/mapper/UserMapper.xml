@@ -12,35 +12,37 @@
 
 	<resultMap id="userMap" type="org.bookbook.domain.UserVO">
 		<id property="userid" column="userid" />
-		<result property="userid" column="userid" />
 		<result property="username" column="username" />
 		<result property="nickname" column="nickname" />
 		<result property="email" column="email" />
 		<result property="password" column="password" />
+		<result property="profileImageUrl" column="profile_image_url" />
 		<result property="regDate" column="reg_date" />
 		<result property="birth" column="birth" />
 		<result property="gender" column="gender" />
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 
+	<!-- <select id="read" resultMap="userMap"> select u.user_id, username, 
+		nickname, email, password, profile_image_url, reg_date, birth, gender, auth 
+		from user u left outer join auth a on u.user_id = a.user_id where u.user_id 
+		= #{userid} </select> -->
+
+	
 
 	<select id="read" resultMap="userMap">
-		select u.user_id, username,
-		nickname,
-		email, password, profile_image_url, reg_date, birth, gender,
-		auth
-		from user u
-		left outer join
-		auth a
-		on u.user_id = a.user_id
-		where
-		u.user_id =
-		#{userid}
+		select u.user_id, u.username, u.nickname, u.email, u.password,
+		u.profile_image_url, u.reg_date, u.birth, u.gender, a.auth
+		from user u left outer join auth a on u.user_id = a.user_id where
+		u.user_id = #{userid}
 	</select>
 
+   <insert id="insert" parameterType="org.bookbook.domain.UserVO">
+        INSERT INTO user (user_id, username, nickname, password, email, profile_image_url, birth, gender)
+        VALUES (#{userid}, #{username}, #{nickname}, #{password}, #{email}, #{profileImageUrl}, #{birth}, #{gender})
+    </insert>
 
-
-
+<!-- 
 	<insert id="insert" parameterType="org.bookbook.domain.UserVO">
 		INSERT INTO user (user_id,
 		username, nickname, password, email, birth,
@@ -49,7 +51,7 @@
 		#{username}, #{nickname}, #{password}, #{email},
 		#{birth}, #{gender})
 	</insert>
-
+ -->
 
 	<insert id="insertAuth">
 		insert into auth(user_id, auth)
