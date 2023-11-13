@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/security/profile").authenticated();
 
-		http.formLogin().loginPage("/security/login?error=login_required") // 로그인 안하고 접근한 경우 리다이렉트
+		http.formLogin()
+				.usernameParameter("userid") // 사용자 이름 필드를 'userid'로 설정
+				.loginPage("/security/login?error=login_required") // 로그인 안하고 접근한 경우 리다이렉트
 				.loginProcessingUrl("/security/login").defaultSuccessUrl("/") // 로그인 성공시 다음 화면 넘어줄 URL
 				.failureUrl("/security/login?error=true"); // el : param.error
 

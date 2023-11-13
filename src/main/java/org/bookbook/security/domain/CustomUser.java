@@ -12,16 +12,12 @@ import lombok.Getter;
 public class CustomUser extends User {
 	
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	private UserVO user;
 	
-	public CustomUser(String userid, String userpassword, 
+	public CustomUser(String username, String userpassword, 
 					Collection<? extends GrantedAuthority> authorities) {
-		super(userid, userpassword, authorities);
+		super(username, userpassword, authorities);
 	}
 
 	public CustomUser(UserVO vo) {
