@@ -6,13 +6,12 @@
 <mapper namespace="org.bookbook.mapper.UserMapper">
 
 	<resultMap id="authMap" type="org.bookbook.domain.AuthVO">
-		<result property="userid" column="userid" />
+		<result property="userid" column="user_id" />
 		<result property="auth" column="auth" />
 	</resultMap>
 
 	<resultMap id="userMap" type="org.bookbook.domain.UserVO">
-		<id property="userid" column="userid" />
-		<result property="userid" column="userid" />
+		<id property="userid" column="user_id" />
 		<result property="username" column="username" />
 		<result property="nickname" column="nickname" />
 		<result property="email" column="email" />
@@ -24,17 +23,14 @@
 	</resultMap>
 
 
+
 	<select id="read" resultMap="userMap">
-		select u.user_id, username,
-		nickname,
-		email, password, profile_image_url, reg_date, birth, gender,
-		auth
-		from user u
-		left outer join
-		auth a
-		on u.user_id = a.user_id
-		where
-		u.user_id =
+		SELECT u.user_id, u.username,
+		u.nickname, u.email, u.password,
+		u.reg_date, u.birth, u.gender, a.auth
+		FROM user u
+		LEFT JOIN auth a ON u.user_id = a.user_id
+		WHERE u.user_id =
 		#{userid}
 	</select>
 
