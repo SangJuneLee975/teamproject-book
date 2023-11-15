@@ -1,6 +1,7 @@
 package org.bookbook.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.bookbook.domain.AuthVO;
 import org.bookbook.domain.ChangePasswordVO;
@@ -69,5 +70,11 @@ public class UserServiceImpl implements UserService {
 
 		return true;
 	}
+
+
+	  @Override
+	    public List<UserVO> getAllUsers() {
+	        return mapper.getAllUsers();
+	    }
 
 }

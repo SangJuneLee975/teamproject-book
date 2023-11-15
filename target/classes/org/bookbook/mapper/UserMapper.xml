@@ -35,6 +35,10 @@
 	</select>
 
 
+ <!-- 모든 사용자 정보를 가져오는 쿼리 -->
+    <select id="getAllUsers" resultMap="userMap">
+        SELECT * FROM user
+    </select>
 
 
 	<insert id="insert" parameterType="org.bookbook.domain.UserVO">
@@ -52,7 +56,6 @@
 		values(#{userid},
 		#{auth})
 	</insert>
-
 
 
 

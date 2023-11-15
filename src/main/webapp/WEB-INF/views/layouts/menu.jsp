@@ -13,18 +13,19 @@
 	</button>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 	
-		<!-- 좌측 메뉴 구성하기
+	<!-- 좌측 메뉴 구성하기 -->
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="/board/list">
+			<li class="nav-item"><a class="nav-link" href="/api/naverLogin">
 				<i class="fa-solid fa-chalkboard"></i>
-				게시판</a></li>
+				네이버API</a></li>
+				
+				
 			<li class="nav-item"><a class="nav-link" href="/travel/list">
 				<i class="fa-solid fa-plane-departure"></i>
 				여행</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">메뉴3</a></li>
 		</ul>
- -->
- 
+
  
 		<!-- 우측 메뉴 -->
 		<ul class="navbar-nav ml-auto">

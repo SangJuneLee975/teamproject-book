@@ -8,4 +8,6 @@
 
 <h1> HOME 팀 프로젝트 회원가입 만들기 </h1>
 
+
+
 <%@include file="layouts/footer.jsp"%>
