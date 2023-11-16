@@ -8,6 +8,7 @@ import org.bookbook.service.FollowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/security")
+@Log4j
 public class FollowerController {
 
     @Autowired
@@ -28,29 +32,32 @@ public class FollowerController {
     @PostMapping("/follow")
     public String follow(@ModelAttribute FollowerVO follower) {
         followerService.follow(follower);
-        return "redirect:/security/follow"; // 변경됨
+        return "redirect:/security/follow"; 
     }
 
+   
     @PostMapping("/unfollow")
-    public String unfollow(@ModelAttribute FollowerVO follower) {
-        followerService.unfollow(follower.getFollowId());
-        return "redirect:/security/follow"; // 변경됨
+    public String unfollow(@RequestParam("followId") int followId) {
+        followerService.unfollow(followId);
+        return "redirect:/security/follow"; 
     }
-
+    
+    
     @GetMapping("/{userId}")
     public String listFollowers(@PathVariable String userId, Model model) {
         model.addAttribute("followers", followerService.getFollowers(userId));
-        return "security/follow"; // 변경됨
+        return "security/follow"; 
     }
     
     @PostMapping("/toggleFollow")
     @ResponseBody
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> toggleFollow(@RequestParam("userId") String userId, Principal principal) {
         if (principal == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         
-        String currentUserId = principal.getName(); // 현재 로그인한 사용자의 ID를 얻음
+        String currentUserId = principal.getName(); // 현재 로그인한 사용자의 ID
 
         followerService.toggleFollow(currentUserId, userId); // 팔로우 상태 토글
         return ResponseEntity.ok().build();

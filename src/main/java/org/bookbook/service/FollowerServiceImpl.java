@@ -1,12 +1,17 @@
 package org.bookbook.service;
 
+import java.util.List;
+
 import org.bookbook.domain.FollowerVO;
 import org.bookbook.mapper.FollowerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.extern.log4j.Log4j;
 
 @Service
+@Log4j
 public class FollowerServiceImpl implements FollowerService {
 	
 	@Autowired
@@ -33,18 +38,21 @@ public class FollowerServiceImpl implements FollowerService {
 	}
 	
 	 @Override
-	    public void toggleFollow(String currentUserId, String targetUserId) {
+	    public void toggleFollow(String followerId, String followingId) {
+		 
 	        // 팔로우 상태 확인
-	        FollowerVO existingFollow = followerMapper.findFollowByUserIds(currentUserId, targetUserId);
+	        FollowerVO existingFollow = followerMapper.findFollowByUserIds(followerId, followingId);
 
 	        if (existingFollow != null) {
+	        	  log.info("이미 팔로우 상태. 언팔로우 진행. followId: " + existingFollow.getFollowId());
 	            // 이미 팔로우 상태인 경우, 언팔로우
 	            followerMapper.delete(existingFollow.getFollowId());
 	        } else {
+	        	log.info("팔로우 상태 아님. 팔로우 진행.");
 	            // 팔로우 상태가 아닌 경우, 팔로우
 	            FollowerVO newFollow = new FollowerVO();
-	            newFollow.setFollowerId(currentUserId);
-	            newFollow.setFollowingId(targetUserId);
+	            newFollow.setFollowerId(followerId);
+	            newFollow.setFollowingId(followingId);
 	            followerMapper.insert(newFollow);
 	        }
 	    }

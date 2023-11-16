@@ -111,13 +111,13 @@ public class SecurityController {
 
         apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
 
-        // String형식인 apiResult를 json형태로 바꿈
+        // String형식인 apiResult를 json형태로 바꾸는 작업
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(apiResult);
         JSONObject jsonObj = (JSONObject) obj;
         model.addAttribute("userInfo", apiResult);
 
-        // 데이터 파싱
+        // 데이터 파싱하는거
         JSONObject response_obj = (JSONObject) jsonObj.get("response");
         String id = (String) response_obj.get("id");
         String nickname = (String) response_obj.get("nickname");

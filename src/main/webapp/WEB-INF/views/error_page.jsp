@@ -14,7 +14,7 @@
 
 	<ul>
 		<c:forEach items="${exception.getStackTrace() }" var="stack">
-			<li>${stack}</li>
+			  <li><c:out value="${stack}"/></li>
 		</c:forEach>
 	</ul>
 

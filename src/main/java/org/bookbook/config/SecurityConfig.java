@@ -49,12 +49,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().ignoringAntMatchers("/api/**");
 
-		http.authorizeRequests().antMatchers("/security/profile").authenticated();
+	    http.authorizeRequests()
+	    .antMatchers("/api/users").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+	    .antMatchers("/security/toggleFollow").authenticated() 
+        .antMatchers("/security/profile").authenticated()
+     
+        .and();
 
 		http.formLogin().usernameParameter("userid") // 사용자 이름 필드를 'userid'로 설정
 				.loginPage("/security/login?error=login_required") // 로그인 안하고 접근한 경우 리다이렉트
 				.loginProcessingUrl("/security/login").defaultSuccessUrl("/") // 로그인 성공시 다음 화면 넘어줄 URL
 				.failureUrl("/security/login?error=true"); // el : param.error
+		
 
 		http.logout() // 로그아웃 설정 시작
 				.logoutUrl("/security/logout") // 로그아웃을 수행할 때 POST 요청을 보낼 URL을 설정

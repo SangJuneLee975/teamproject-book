@@ -29,7 +29,7 @@
 				가입일:
 				<fmt:formatDate value="${user.regDate}" pattern="yyyy-MM-dd HH:mm" />
 			</div>
-			닉네임 또는 사용자 이름 표시, 프로필 사진 표시, 회원정보 수정 기능 구현, SNS서평 공유, (우선순위 낮음)
+			닉네임 또는 사용자 이름 표시, 프로필 사진 표시, 회원정보 수정 기능 구현, SNS서평 공유
 
 		</div>
 	</div>
@@ -47,19 +47,6 @@
 		<div class="right"></div>
 	</a>
 
-
-	<!-- 
-		<%-- 로그아웃 된 상태 --%>
-				<li class="nav-item">
-					<a class="nav-link" href="/security/login"> 
-					</i> 로그인
-					</a>
-				</li>	
-	
-	
-   	<li class="nav-item">
-					<a class="nav-link" href="/security/profile"> 
-					 -->
 
 	<a href="#" class="item">
 		<div class="icon">ii</div>
