@@ -13,8 +13,8 @@
 	</h4>
 
 	<ul>
-		<c:forEach items="${exception.getStackTrace() }" var="stack"> 
-			<li>${stack}</li>
+		<c:forEach items="${exception.getStackTrace() }" var="stack">
+			  <li><c:out value="${stack}"/></li>
 		</c:forEach>
 	</ul>
 

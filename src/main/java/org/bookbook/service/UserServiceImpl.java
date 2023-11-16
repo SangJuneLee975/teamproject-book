@@ -1,10 +1,13 @@
 package org.bookbook.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.bookbook.domain.AuthVO;
 import org.bookbook.domain.ChangePasswordVO;
+import org.bookbook.domain.FollowerVO;
 import org.bookbook.domain.UserVO;
+import org.bookbook.mapper.FollowerMapper;
 import org.bookbook.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,11 +23,14 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserMapper mapper;
+	
+	 @Autowired
+    private FollowerMapper followerMapper;
 
 	@Autowired
 	private PasswordEncoder pwEncoder;
 
-	// //
+	// 
 	@Override
 	public UserVO get(String userid) {
 		return mapper.read(userid);
@@ -39,10 +45,10 @@ public class UserServiceImpl implements UserService {
 		String encPassword = pwEncoder.encode(userid.getPassword());
 		userid.setPassword(encPassword);
 
-		// 2. user 테이블에 저장
+		// 2. users 테이블에 저장
 		mapper.insert(userid);
 
-		// 3. auth에 저장
+		// 3. users_auth에 저장
 		AuthVO auth = new AuthVO(userid.getUserid(), "ROLE_USER");
 		mapper.insertAuth(auth);
 
@@ -60,7 +66,7 @@ public class UserServiceImpl implements UserService {
 		if (!pwEncoder.matches(vo.getOrgPassword(), user.getPassword())) {
 			// 비번 오류
 			log.info("비밀번호 불일치.");
-		return false;
+			return false;
 		}
 
 		String encPassword = pwEncoder.encode(vo.getNewPassword());
@@ -69,6 +75,23 @@ public class UserServiceImpl implements UserService {
 
 		return true;
 	}
+
+
+	  @Override
+	    public List<UserVO> getAllUsers() {
+	        return mapper.getAllUsers();
+	    }
+	  
+	   @Override
+	    public List<UserVO> getAllUsersWithFollowStatus(String currentUserId) {
+		   List<UserVO> users = mapper.getAllUsers();
+		    users.forEach(user -> {
+		        FollowerVO follow = followerMapper.findFollowByUserIds(currentUserId, user.getUserid());
+		        user.setFollowed(follow != null);
+		    });
+		    return users;
+	    }
+
+
+	  
 }
-
-

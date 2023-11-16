@@ -33,5 +33,5 @@ public class ServletConfig implements WebMvcConfigurer {
 		bean.setSuffix(".jsp");
 		registry.viewResolver(bean);
 	}
-//
+
 }

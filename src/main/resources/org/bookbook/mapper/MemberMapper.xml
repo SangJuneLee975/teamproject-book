@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="org.bookbook.mapper.MemberMapper">
+
+	<insert id="kakaoInsert">
+		INSERT INTO TBL_MEMBER (USERID, USERPW, USERNAME, EMAIL, SNSID) VALUES
+		(#{userid}, #{userpw}, #{userName}, #{email}, #{snsId})
+	</insert>
+</mapper>

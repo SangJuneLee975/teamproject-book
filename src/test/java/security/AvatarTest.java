@@ -22,7 +22,7 @@ import net.coobird.thumbnailator.Thumbnails;
 
 public class AvatarTest {
 	
-	public static final String AVATAR_UPLOAD_DIR = "images/avatar";
+	public static final String AVATAR_UPLOAD_DIR = "c:/upload/avatar";
 	
 	@Test
 	public void testUpload() throws IOException {

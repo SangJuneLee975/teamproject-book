@@ -22,11 +22,11 @@ public class MemberMapperTest {
 
 	@Test
 	public void testRead() {
-		UserVO member = mapper.read("test1");
+		UserVO member = mapper.read("test5");
 		log.info(member);
 
 		for(AuthVO auth : member.getAuthList()) {
-			log.info(auth); //
+			log.info(auth);
 		}
 	}
 }
