@@ -7,15 +7,15 @@ import org.bookbook.domain.FollowerVO;
 
 
 public interface FollowerMapper {
-	void insert(FollowerVO follower);
+	public void insert(FollowerVO follower);
 
-	void delete(int followId);
+	public void delete(int followId);
 
-	List<FollowerVO> findFollowersByUserId(String userId);
+	public List<FollowerVO> findFollowersByUserId(String userId);
 
-	List<FollowerVO> findFollowingsByUserId(String userId);
+	public List<FollowerVO> findFollowingsByUserId(String userId);
 
 
 	// 두 사용자 간의 팔로우 관계를 찾는 메소드
-	FollowerVO findFollowByUserIds(@Param("followerId") String followerId, @Param("followingId") String followingId);
+	public FollowerVO findFollowByUserIds(@Param("followerId") String followerId, @Param("followingId") String followingId);
 }

@@ -1,13 +1,14 @@
-package org.bookbook.auth.Naver;
+package org.bookbook.auth.naver;
 
 import java.io.IOException;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.bookbook.domain.NaverUserVO;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.util.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -46,6 +47,7 @@ public class NaverLoginBO {
 				.callback(REDIRECT_URI).state(state) // 앞서 생성한 난수값을 인증 URL생성시 사용함
 				.build(NaverLoginApi.instance());
 		 System.out.println("Generated Naver Auth URL: " + REDIRECT_URI);
+		 
 		return oauthService.getAuthorizationUrl();
 	}
 
@@ -95,4 +97,20 @@ public class NaverLoginBO {
 		return response.getBody();
 	}
 
+	public NaverUserVO getNaverUserInfo(OAuth2AccessToken oauthToken) throws IOException, ParseException {
+        String jsonProfile = getUserProfile(oauthToken);
+
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObj = (JSONObject) parser.parse(jsonProfile);
+        JSONObject responseObj = (JSONObject) jsonObj.get("response");
+
+        NaverUserVO naverUser = new NaverUserVO();
+        naverUser.setId((String) responseObj.get("id"));
+        naverUser.setName((String) responseObj.get("name"));
+        naverUser.setEmail((String) responseObj.get("email"));
+        naverUser.setGender((String) responseObj.get("gender"));
+        naverUser.setBirthday((String) responseObj.get("birthday"));
+
+        return naverUser;
+    }
 }

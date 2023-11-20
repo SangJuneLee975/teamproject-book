@@ -32,6 +32,6 @@ public class UserController {
         } catch (Exception e) {
             log.error("Error fetching users", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        } //
     }
 }

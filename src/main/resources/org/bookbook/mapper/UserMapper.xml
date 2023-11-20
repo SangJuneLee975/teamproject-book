@@ -35,7 +35,7 @@
 	</select>
 
 
- <!-- 모든 사용자 정보를 가져오는 쿼리 -->
+ <!-- 모든 사용자 정보를 가져오는 쿼리   -->
     <select id="getAllUsers" resultMap="userMap">
         SELECT * FROM user
     </select>

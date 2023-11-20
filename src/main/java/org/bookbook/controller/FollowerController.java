@@ -59,7 +59,7 @@ public class FollowerController {
         
         String currentUserId = principal.getName(); // 현재 로그인한 사용자의 ID
 
-        followerService.toggleFollow(currentUserId, userId); // 팔로우 상태 토글
+        followerService.toggleFollow(currentUserId, userId); //  팔로우 상태 토글
         return ResponseEntity.ok().build();
     }
 }

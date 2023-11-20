@@ -7,28 +7,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>LoginTest</title>
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
-	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<style type="text/css">
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-}
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-h3 {
-	display: inline-block;
-	padding: 0.6em;
-}
-</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    $.get("/naver-login-url", function(data) {
+        $("#naver_id_login").html('<a href="' + data + '"><img width="223" src="/resources/icons/naver_Bn_Green.png" alt="네이버 로그인" /></a>');
+    });
+});
+</script>
+
 </head>
 <body>
-
-
-
 	<!-- 로그인 폼 -->
 	<div style="width: 500px" class="mx-auto">
 		<h1 class="my-6">로그인</h1>
@@ -75,24 +66,20 @@ h3 {
 				class="btn btn-primary btn-block">
 				<i class="fa-solid fa-right-to-bracket"></i> 회원가입
 			</button>
-		</form>
+
+			<!-- 네이버 로그인 버튼 -->
+			<div id="naver_id_login"
+				style="text-align: center; margin-top: 20px;"></div>
 	</div>
-	<!-- 네이버 로그인 버튼 -->
-	<div id="naver_id_login" style="text-align: center; margin-top: 20px;">
-		<a href="naverLogin"> <img width="223"
-			src="${pageContext.request.contextPath}/resources/icons/naver_Bn_Green.png" />
-		</a>
+
+	</form>
 	</div>
-	
-	<!-- 
-	<div id="naver_id_login" style="text-align: center">
-		<a href="${url}"><img width="223"
-			src="${pageContext.request.contextPath}/resources/icons/naver_Bn_Green.png" /></a>
-	</div>
-	<br>
-	 -->
-	
-	
+
+
+
+
+
+
 
 	<!-- 로그아웃 폼 -->
 	<form id="userlogoutForm" action="/security/logout" method="post"></form>

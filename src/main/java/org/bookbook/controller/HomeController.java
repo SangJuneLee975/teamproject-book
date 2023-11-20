@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -27,7 +29,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Date date = new Date();
@@ -41,11 +43,30 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
 			// 사용자가 로그인한 상태라면
-			// 사용자 정보를 가져와서 모델에 추가
+			//  사용자 정보를 가져와서 모델에 추가
 			UserDetails userDetails = (UserDetails) auth.getPrincipal();
 			model.addAttribute("username", userDetails.getUsername());
 		}
+		
+		 // 세션에서 사용자 정보 가져오기
+        String userId = (String) session.getAttribute("userId");
+        String userNickname = (String) session.getAttribute("userNickname");
+        String userName = (String) session.getAttribute("userName");
+        String userEmail = (String) session.getAttribute("userEmail");
+        String userGender = (String) session.getAttribute("userGender");
+        String userBirthday = (String) session.getAttribute("userBirthday");
+	    
+        // 모델에 사용자 정보 추가
+        model.addAttribute("userId", userId);
+        model.addAttribute("userNickname", userNickname);
+        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", userEmail);
+        model.addAttribute("userGender", userGender);
+        model.addAttribute("userBirthday", userBirthday);
 
+	    
+	    
+	    
 		return "home";
 	}
 

@@ -1,4 +1,4 @@
-package org.bookbook.auth.Naver;
+package org.bookbook.auth.naver;
 
 import com.github.scribejava.core.builder.api.DefaultApi20;
 

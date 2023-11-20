@@ -16,7 +16,7 @@ public interface UserMapper {
 	public void changePassword(ChangePasswordVO vo); 
 
 	  // 모든 사용자 정보를 가져오는 메소드
-    List<UserVO> getAllUsers();
+	public List<UserVO> getAllUsers();
 	
 	//public boolean changePassword(ChangePasswordVO vo); 
 	

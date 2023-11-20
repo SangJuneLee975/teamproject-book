@@ -6,7 +6,7 @@
     prefix="sec"%>
 <%@ page session="false"%>
 
-<sec:authentication property="principal.user" var="user" />
+<sec:authentication property="principal" var="userId" />
 
 <!-- 사용자 목록 보여주기 -->
 <div class="user-list">
